@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OCaml Debug",
+            "type": "ocamldebug",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.d.byte",
+            "stopOnEntry": false,
+            "preLaunchTask": "build-current-file"
+        }
+    ]
+}
