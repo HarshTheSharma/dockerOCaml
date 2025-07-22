@@ -6,7 +6,7 @@
 		"--security-opt",
 		"seccomp=unconfined"
 	],
-	"remoteUser": "dev",
+	"remoteUser": "root",
 	"customizations": {
 		"vscode": {
 			"settings": {
