@@ -1,0 +1,25 @@
+{
+	"name": "CS320Docker",
+	"dockerFile": "Dockerfile",
+	"runArgs": [
+		"--cap-add=SYS_PTRACE",
+		"--security-opt",
+		"seccomp=unconfined"
+	],
+	"remoteUser": "opam",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash"
+			},
+			"extensions": [
+				"ms-vscode.makefile-tools",
+				"hackwaly.ocaml",
+				"hackwaly.ocamlearlybird",
+				"ms-azuretools.vscode-docker",
+				"ms-vscode-remote.remote-containers",
+				"batyan-soft.fast-tasks"
+			]
+		}
+	}
+}
