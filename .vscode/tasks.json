@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+    "command": "make",
+    "reveal": "always",
+    "tasks": [
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "build"
+            ],
+            "group": "build",
+            "problemMatcher": "$ocamlc"
+        },
+        {
+            "label": "build-current-file",
+            "type": "shell",
+            "command": "ocamlc",
+            "args": [
+                "-g",
+                "-o",
+                "${fileBasenameNoExtension}.d.byte",
+                "${fileBasename}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": "build",
+            "problemMatcher": "$ocamlc",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}
