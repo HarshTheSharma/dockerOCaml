@@ -5,16 +5,22 @@ ENV DEBIAN_FRONTEND=noninteractive
 USER root
 
 RUN apt-get update && \
-    apt-get -y install --no-install-recommends m4 make && \
+    apt-get -y install --no-install-recommends m4 make sudo && \
     apt-get autoremove -y && \
     apt-get clean -y && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    useradd -ms /bin/bash dev && \
+    usermod -aG sudo dev && \
+    echo "dev ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-USER opam
+USER dev
+WORKDIR /home/dev
 
 RUN opam init --bare --disable-sandboxing -a -y && \
     eval $(opam env) && \
     opam update && \
     opam install -y seq merlin ocp-indent ocamlbuild ocamlformat
 
-ENV PATH=/home/opam/.opam/4.13/bin:$PATH
+ENV PATH=/home/dev/.opam/4.13/bin:$PATH
+
+CMD ["bash"]
