@@ -5,16 +5,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 USER root
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends m4 make sudo && \
-    apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+    apt-get -y install --no-install-recommends m4 make && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
 
-WORKDIR /root
+USER opam
 
 RUN opam init --bare --disable-sandboxing -a -y && \
     eval $(opam env) && \
     opam update && \
     opam install -y seq merlin ocp-indent ocamlbuild ocamlformat
 
-ENV PATH=/root/.opam/4.13/bin:$PATH
-
-CMD ["bash"]
+ENV PATH=/home/opam/.opam/4.13/bin:$PATH
