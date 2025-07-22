@@ -11,7 +11,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     useradd -ms /bin/bash dev && \
     usermod -aG sudo dev && \
-    echo "dev ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+    echo "dev ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    mkdir -p /home/dev/.opam && \
+    chown -R dev:dev /home/dev
 
 USER dev
 WORKDIR /home/dev
@@ -21,6 +23,8 @@ RUN opam init --bare --disable-sandboxing -a -y && \
     opam update && \
     opam install -y seq merlin ocp-indent ocamlbuild ocamlformat
 
+ENV OPAMROOT=/home/dev/.opam
 ENV PATH=/home/dev/.opam/4.13/bin:$PATH
+ENV OCAML_LSP_SERVER=/home/dev/.opam/4.13/bin/ocamllsp
 
 CMD ["bash"]
