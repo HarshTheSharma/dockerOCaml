@@ -1,5 +1,5 @@
 {
-	"name": "CS320Docker",
+	"name": "OCaml Dev Container",
 	"dockerFile": "Dockerfile",
 	"runArgs": [
 		"--cap-add=SYS_PTRACE",
